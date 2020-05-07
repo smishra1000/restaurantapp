@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title">{{"Order App"}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal"  (click)="openModal()" class="header-btn-cart">
+        <ion-icon name="funnel"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{'Search for Resturant and Couisne'}}">
+  </ion-searchbar>
+  <ion-grid class="grid">
+    <ion-row>
+      <!-- <ion-slides pager initialSlide=0 speed=2000 loop=true dir="rtl">
+        <ion-slide *ngFor="let item of categories">
+          <div class="overlay">
+            <img src={{item.thumb}} class="slider-img">
+          </div>
+          <div class="card-title">{{'Featured Product' }}</div>
+        </ion-slide>
+      </ion-slides> -->
+    </ion-row>
+
+    <h4>{{"Our Popular Varities"}}</h4>
+
+    <ion-row class="categories">
+      <ion-col col-6 *ngFor="let item of filteredCategories" (click)="navigate(item.$key)">
+        <img src="{{item.thumb}}" />
+        <div class="text-over-img">
+          <p class="text-image"><small>{{item.title}}</small></p>
+          <p class="text-image"><small>{{'1500+ Resturant'}}</small></p>
+        </div>
+       
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

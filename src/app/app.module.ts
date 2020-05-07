@@ -1,23 +1,27 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { NgModule, ErrorHandler,CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { MyApp } from "./app.component";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from "@angular/common/http";
+import { FilterModalPage } from '../pages/filter-modal/filter-modal';
+
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  declarations: [MyApp,FilterModalPage],
+  imports: [
+    IonicModule.forRoot(MyApp),
+  
+    BrowserModule,
+    HttpClientModule,
   ],
-  bootstrap: [AppComponent]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  exports: [BrowserModule],
+  bootstrap: [IonicApp],
+  entryComponents: [MyApp,FilterModalPage],
+  providers: [
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+  ],
 })
-export class AppModule {}
+export class AppModule { }
